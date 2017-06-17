@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '6'
+
+install:
+  - npm --version
+  - npm i -qs
+
+script:
+  - npm run build
+
+cache:
+  bundler: true
+  directories:
+    - node_modules
