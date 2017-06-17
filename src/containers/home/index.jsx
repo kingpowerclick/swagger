@@ -3,36 +3,48 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from './styles.css';
+import { getSpecData } from '../../actions/actions.js';
 
-const Home = ({ specList }) => {
-  const specMenu = specList.map((spec, index) => (
-    <li key={index}>
-      <NavLink
-        to={`/specs/${spec.name}`}
-        exact
-      >
-        {spec.name}
-      </NavLink>
-    </li>
-  ));
+class Home extends React.Component {
 
-  return (
-    <div className={styles.home}>
-      <ul>
-        {specMenu}
-      </ul>
-    </div>
-  );
-};
+  static propTypes = {
+    specList: PropTypes.arrayOf(PropTypes.object),
+    getSpecData: PropTypes.func,
+  };
 
-Home.propTypes = {
-  specList: PropTypes.arrayOf(PropTypes.object),
-};
+  static defaultProps = {
+    specList: [],
+  };
 
-Home.defaultProps = {
-  specList: [],
+  componentDidMount() {
+    this.props.getSpecData()
+  }
+
+  specMenu() {
+    return this.props.specList.map((spec, index) => (
+      <li key={index}>
+        <NavLink
+          to={`/specs/${spec.name}`}
+          exact
+        >
+          {spec.name}
+        </NavLink>
+      </li>
+    ));
+  }
+
+  render() {
+    return (
+      <div className={styles.home}>
+        <ul>
+          {specMenu()}
+        </ul>
+      </div>
+    );
+  }
 };
 
 export default connect(
   ({ specList }) => ({ specList }),
+  { getSpecData, },
 )(Home);
