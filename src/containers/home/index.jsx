@@ -5,18 +5,22 @@ import { NavLink } from 'react-router-dom';
 import styles from './styles.css';
 
 const Home = ({ specList }) => {
-  const specMenu = specList.map(spec => (
-    <NavLink
-      to={`/specs/${spec.name}`}
-      exact
-    >
-      {spec.name}
-    </NavLink>
+  const specMenu = specList.map((spec, index) => (
+    <li key={index}>
+      <NavLink
+        to={`/specs/${spec.name}`}
+        exact
+      >
+        {spec.name}
+      </NavLink>
+    </li>
   ));
 
   return (
     <div className={styles.home}>
-      {specMenu}
+      <ul>
+        {specMenu}
+      </ul>
     </div>
   );
 };

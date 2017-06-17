@@ -1,6 +1,6 @@
 const initialState = [{
   name: 'React',
-  url: 'https://facebook.github.io/react',
+  url: 'http://petstore.swagger.io/v2/swagger.json',
 }];
 
 /**

@@ -1,21 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SwaggerUI from '../../components/swagger';
+import SwaggerUi, { presets } from 'swagger-ui';
+import SwaggerComponent from '../../components/swagger';
 
-const Swagger = (props) => {
-  function getSpec() {
-    const specs = props.specList;
-    return specs != null && specs.size > 0 ? specs.find(spec => spec.name === props.params.specName) : {};
+class Swagger extends React.Component {
+
+  static propTypes = {
+    specList: PropTypes.arrayOf(PropTypes.shape({ dom_id: {}, url: {}, spec: {}, presets: [] })).isRequired,
+  };
+
+  componentDidMount() {
+    SwaggerUi(this.getSpec());
   }
 
-  return (
-    <SwaggerUI specParams={getSpec()} />
-  );
-};
+  getSpec() {
+    const specs = this.props.specList;
+    const specItem = specs != null && specs.length > 0 ? specs.find(spec =>
+      spec.name === this.props.match.params.specName) : {};
+    specItem.dom_id = '#swaggerContainer';
+    specItem.presets = [presets.apis];
+    return specItem;
+  }
 
-Swagger.propTypes = {
-  specList: PropTypes.arrayOf(PropTypes.object),
-};
+  render() {
+    return (
+      <SwaggerComponent />
+    );
+  }
+}
 
-export default connect()(Swagger);
+export default connect(
+  ({ specList }) => ({ specList }),
+)(Swagger);
