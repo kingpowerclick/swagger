@@ -13,14 +13,13 @@ export default merge({
         loader: 'style-loader',
       }, {
         loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[local]__[path][name]__[hash:base64:5]',
-        },
+        // query: {
+        //   modules: true,
+        //   localIdentName: '[local]__[path][name]__[hash:base64:5]',
+        // },
       }, {
         loader: 'postcss-loader',
       }],
-      exclude: /node_modules/,
     }],
   },
 

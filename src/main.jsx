@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router-dom';
-import 'swagger-ui/dist/swagger-ui.css';
 
 import { store, history } from './store';
 import routes from './routes';

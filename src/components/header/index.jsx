@@ -1,16 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './styles.css';
 
 export default () => (
-  <div className={styles.header}>
-    <NavLink
-      to="/"
-      exact
-      className={styles.link}
-      activeClassName={styles.link_active}
-    >
-      Home
-    </NavLink>
+  <div className="topbar">
+    <div className="wrapper">
+      <div className="topbar-wrapper">
+        <NavLink
+          to="/"
+          exact
+          title="Swagger UX"
+        >
+          <img height="30" width="30" alt="Swagger UX" />
+          <span>King Power Click</span>
+        </NavLink>
+        <NavLink
+          to="/"
+          exact
+        >
+          Home
+        </NavLink>
+      </div>
+    </div>
   </div>
 );

@@ -4,12 +4,14 @@ import Header from '../../components/header';
 import styles from './styles.css';
 
 const Root = ({ children }) => (
-  <div className={styles.root}>
-    <Header />
+  <div className="swagger-ui">
+    <section className="swagger-container">
+      <Header />
 
-    <div className={styles.content}>
-      {children}
-    </div>
+      <div>
+        {children}
+      </div>
+    </section>
   </div>
 );
 

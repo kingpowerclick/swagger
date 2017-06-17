@@ -2,12 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SwaggerUi, { presets } from 'swagger-ui';
-import SwaggerComponent from '../../components/swagger';
 
 class Swagger extends React.Component {
 
   static propTypes = {
-    specList: PropTypes.arrayOf(PropTypes.shape({ dom_id: {}, url: {}, spec: {}, presets: [] })).isRequired,
+    specList: PropTypes.arrayOf(PropTypes.shape(
+      {
+        dom_id: PropTypes.string,
+        url: PropTypes.string,
+        spec: PropTypes.string,
+        presets: [],
+      }),
+    ).isRequired,
+    match: PropTypes.shape({ params: { specName: PropTypes.string } }).isRequired,
   };
 
   componentDidMount() {
@@ -25,7 +32,7 @@ class Swagger extends React.Component {
 
   render() {
     return (
-      <SwaggerComponent />
+      <div id="swaggerContainer" />
     );
   }
 }

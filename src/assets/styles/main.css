@@ -1,1 +1,2 @@
-@import "normalize.css";
+@import "swagger-ui/dist/swagger-ui.css";
+@import "./global.css";
