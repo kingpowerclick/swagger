@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import api from 'axios';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styles from './styles.css';
+import './styles.css';
 import {
   loadSpec,
   loadSpecSuccess,
@@ -14,7 +14,13 @@ import CONFIG from '../../assets/config';
 class Home extends React.Component {
 
   static propTypes = {
-    specList: PropTypes.arrayOf(PropTypes.object).isRequired,
+    specList: PropTypes.arrayOf(PropTypes.shape(
+      {
+        name: PropTypes.string,
+        label: PropTypes.string,
+        url: PropTypes.string,
+      }),
+    ).isRequired,
     loading: PropTypes.bool,
     loaded: PropTypes.bool,
     error: PropTypes.string,
@@ -43,12 +49,16 @@ class Home extends React.Component {
     const specList = this.props.specList;
     return specList.map((spec, index) => (
       <li key={index}>
-        <NavLink
-          to={`/specs/${spec.name}`}
-          exact
-        >
-          {spec.name}
-        </NavLink>
+        <div className="opblock opblock-options">
+          <NavLink
+            to={`/specs/${spec.name}`}
+            exact
+          >
+            <div className="opblock-summary">
+              {spec.label != null ? spec.label : spec.name}
+            </div>
+          </NavLink>
+        </div>
       </li>
     ));
   }
@@ -56,19 +66,24 @@ class Home extends React.Component {
   render() {
     const { loading, loaded, error } = this.props;
     return (
-      <div className={styles.home}>
-        {loading && (
-          <div className="info">
-            <h4 className="title">Loading...</h4>
-          </div>)}
-        {loaded && error != null && (
-          <div className="info">
-            <h4 className="title">There is an error. ({error})</h4>
-          </div>)}
-        {!loading && loaded && (
-          <ul>
-            {this.specMenu()}
-          </ul>)}
+      <div className="info">
+        <div className="scheme-container">
+          <div className="scheme-wrapper">
+            <h6 className="title">API Gateway</h6>
+            {loading && (
+              <div className="info">
+                <h4 className="title">Loading...</h4>
+              </div>)}
+            {loaded && error != null && (
+              <div className="info">
+                <h4 className="title">There is an error. ({error})</h4>
+              </div>)}
+            {!loading && loaded && (
+              <ul>
+                {this.specMenu()}
+              </ul>)}
+          </div>
+        </div>
       </div>
     );
   }

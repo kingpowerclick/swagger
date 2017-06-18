@@ -16,7 +16,26 @@ body {
   background: #fafafa;
 }
 
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.swagger-ui .info li .opblock a {
+  font-size: 30px;
+  text-decoration: none;
+}
+
 .swagger-ui .topbar {
   padding: 8px 30px;
   background-color: #fafafa;
+}
+
+.swagger-ui .topbar a {
+  color: #888;
+}
+
+.swagger-ui .info .scheme-container {
+  padding-left: 30px;
+  padding-right: 30px;
 }

@@ -8,10 +8,8 @@ class Swagger extends React.Component {
   static propTypes = {
     specList: PropTypes.arrayOf(PropTypes.shape(
       {
-        dom_id: PropTypes.string,
+        name: PropTypes.string,
         url: PropTypes.string,
-        spec: PropTypes.string,
-        presets: [],
       }),
     ).isRequired,
     match: PropTypes.shape({ params: { specName: PropTypes.string } }).isRequired,

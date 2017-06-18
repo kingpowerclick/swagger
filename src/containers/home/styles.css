@@ -1,10 +1,15 @@
 .home {
+  margin: 20px;
 }
 
 .title {
   margin: 0;
   padding: 0;
   font-size: 1.8em;
+}
+
+.nav-list-text {
+  text-align: center;
 }
 
 .description {

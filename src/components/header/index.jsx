@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './styles.css';
 
 const logo = require('../../assets/images/logo-king-power_3x.png');
 
@@ -18,12 +19,15 @@ export default () => (
             alt="King Power Click - service API"
           />
         </NavLink>
-        <NavLink
-          to="/"
-          exact
-        >
-          Home
+        <div className="try-out">
+          <NavLink
+            className="btn try-out__btn"
+            to="/"
+            exact
+          >
+            Home
         </NavLink>
+        </div>
       </div>
     </div>
   </div>
