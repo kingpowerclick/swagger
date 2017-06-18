@@ -1,13 +1,17 @@
-import {
+import { SPEC } from './events';
+
+const {
   LOAD,
   LOAD_SUCCESS,
   LOAD_FAIL,
-} from './events';
+} = SPEC;
 
-const initialState = [{
-  name: 'React',
-  url: 'http://petstore.swagger.io/v2/swagger.json',
-}];
+const initialState = {
+  specList: [{
+    name: 'React',
+    url: 'http://petstore.swagger.io/v2/swagger.json',
+  }],
+};
 
 /**
  * SpecList
@@ -17,20 +21,21 @@ const initialState = [{
  *
  * @return {Array}
  */
-function specList(state = initialState, action = {}) {
+function spec(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
-    case LOAD_SUCCESS:
+    case LOAD_SUCCESS: {
       return {
         ...state,
         loading: false,
         loaded: true,
         specList: action.output,
       };
+    }
     case LOAD_FAIL:
       return {
         ...state,
@@ -44,4 +49,4 @@ function specList(state = initialState, action = {}) {
   }
 }
 
-export default specList;
+export default spec;

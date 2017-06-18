@@ -1,18 +1,22 @@
-import api from 'axios';
-import {
+import { SPEC } from '../reducers/events';
+
+const {
   LOAD,
   LOAD_SUCCESS,
   LOAD_FAIL,
-} from './events';
+} = SPEC;
 
 /**
  * Actions
  */
-export function getSpecData(url) {
-  return dispatch => {
-    dispatch({ type: LOAD })
-    api.get(url)
-      .then(response => dispatch({ type: LOAD_SUCCESS, output: response }))
-      .catch(err => dispatch({ type: LOAD_FAIL, error: err }))
-  }
+export function loadSpec() {
+  return dispatch => dispatch({ type: LOAD });
+}
+
+export function loadSpecSuccess(response) {
+  return dispatch => dispatch({ type: LOAD_SUCCESS, output: response });
+}
+
+export function loadSpecFail(err) {
+  return dispatch => dispatch({ type: LOAD_FAIL, error: err });
 }

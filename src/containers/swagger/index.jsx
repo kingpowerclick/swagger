@@ -37,6 +37,10 @@ class Swagger extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  specList: state.spec.specList,
+});
+
 export default connect(
-  ({ specList }) => ({ specList }),
+  mapStateToProps,
 )(Swagger);
