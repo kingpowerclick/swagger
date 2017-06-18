@@ -13,12 +13,15 @@ export default merge({
         loader: 'style-loader',
       }, {
         loader: 'css-loader',
-        // query: {
-        //   modules: true,
-        //   localIdentName: '[local]__[path][name]__[hash:base64:5]',
-        // },
       }, {
         loader: 'postcss-loader',
+      }],
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      use: [{
+        loader: 'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+      }, {
+        loader: 'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
       }],
     }],
   },
@@ -27,7 +30,7 @@ export default merge({
     new HtmlWebpackPlugin({
       inject: true,
       template: `${APP_PATH}/template.html`,
-      favicon: `${APP_PATH}/assets/images/favicon.ico`,
+      favicon: `${APP_PATH}/assets/images/favicon.jpg`,
     }),
 
     new StyleLintPlugin({

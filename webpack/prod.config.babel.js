@@ -16,9 +16,9 @@ export default merge({
   module: {
     rules: [{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: [{
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
           loader: 'css-loader',
           query: {
             modules: true,
@@ -27,6 +27,15 @@ export default merge({
           },
         }, {
           loader: 'postcss-loader',
+        }],
+      }),
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      use: ExtractTextPlugin.extract({
+        use: [{
+          loader: 'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+        }, {
+          loader: 'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
         }],
       }),
     }],
@@ -69,7 +78,7 @@ export default merge({
 
     new HtmlWebpackPlugin({
       inject: true,
-      favicon: `${APP_PATH}/assets/images/favicon.ico`,
+      favicon: `${APP_PATH}/assets/images/favicon.jpg`,
       minify: {
         collapseWhitespace: true,
         keepClosingSlash: true,
