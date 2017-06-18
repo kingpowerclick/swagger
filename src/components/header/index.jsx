@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../assets/images/logo-king-power_3x.png';
+
+const logo = require('../../assets/images/logo-king-power_3x.png');
 
 export default () => (
   <div className="topbar">
@@ -11,7 +12,11 @@ export default () => (
           exact
           title="Swagger UX"
         >
-          <img height="50" src={Logo} alt="King Power Click - service API" />
+          <img
+            height="50"
+            src={logo}
+            alt="King Power Click - service API"
+          />
         </NavLink>
         <NavLink
           to="/"

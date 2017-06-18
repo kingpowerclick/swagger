@@ -9,7 +9,7 @@ const {
 const initialState = {
   specList: [{
     name: 'React',
-    url: 'http://petstore.swagger.io/v2/swagger.json',
+    url: 'https://petstore.swagger.io/v2/swagger.json',
   }],
 };
 

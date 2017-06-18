@@ -2,11 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 
 export const ROOT_PATH = path.join(__dirname, '..');
-export const APP_PATH  = `${ ROOT_PATH }/src`;
+export const APP_PATH = `${ROOT_PATH}/src`;
 export const CONFIG = {
   target: 'web',
 
-  entry: `${ APP_PATH }/main`,
+  entry: `${APP_PATH}/main`,
 
   module: {
     rules: [
@@ -29,5 +29,10 @@ export const CONFIG = {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
     })
-  ]
+  ],
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
+  }
 };

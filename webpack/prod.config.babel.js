@@ -22,8 +22,6 @@ export default merge({
           loader: 'css-loader',
           query: {
             modules: true,
-            minimize: true,
-            localIdentName: '[hash:base64:8]',
           },
         }, {
           loader: 'postcss-loader',
@@ -33,7 +31,7 @@ export default merge({
       test: /\.(jpe?g|png|gif|svg)$/i,
       use: ExtractTextPlugin.extract({
         use: [{
-          loader: 'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          loader: 'file-loader',
         }, {
           loader: 'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
         }],
